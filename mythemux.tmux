@@ -1,4 +1,7 @@
 #!/usr/bin/env bash
+# Modified from: Lógico Software's Tokyo Night tmux theme
+# Original: https://github.com/logico-dev/tokyo-night-tmux
+# License: MIT
 
 CURRENT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 SCRIPTS_PATH="$CURRENT_DIR/src"
