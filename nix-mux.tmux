@@ -7,7 +7,7 @@ source $SCRIPTS_PATH/themes.sh
 
 RESET="#[fg=${THEME[foreground]},bg=${THEME[background]},nobold,noitalics,nounderscore,nodim]"
 
-# Highlight colors
+# options
 tmux set -g status-left-length 80
 tmux set -g status-right-length 150
 tmux set -g mode-style "fg=${THEME[bgreen]},bg=${THEME[bblack]}"
@@ -22,10 +22,12 @@ tmux set -g popup-border-style "fg=${THEME[ghturquoise]}"
 HOSTNAME=$(hostname)
 terminal_icon=""
 active_terminal_icon=""
+# modules
 window_number="#($SCRIPTS_PATH/custom-number.sh #I digital)"
 custom_pane="#($SCRIPTS_PATH/custom-number.sh #P digital)"
 zoom_number="#($SCRIPTS_PATH/custom-number.sh #P fsquare)"
-music_status="#($SCRIPTS_PATH/music-status.sh)"
+music="#($SCRIPTS_PATH/music-status.sh)"
+datetime="$("$SCRIPTS_PATH"/datetime-status.sh)"
 
 ### LEFT ###
 ### session name ###
@@ -44,5 +46,5 @@ tmux set -g window-status-format "$RESET#[fg=${THEME[foreground]},bg=${THEME[ghb
 #[nobold,dim]#{?window_zoomed_flag,$zoom_number,$custom_pane} "
 
 ### RIGHT ###
-tmux set -g status-right "$music_status"
+tmux set -g status-right "$music$datetime"
 tmux set -g window-status-separator ""

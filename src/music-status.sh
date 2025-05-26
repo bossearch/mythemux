@@ -3,6 +3,11 @@
 CURRENT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 source $CURRENT_DIR/themes.sh
 
+# Exit if not in a graphical session (TTY fallback check)
+if [[ -z "$DISPLAY" ]]; then
+  exit 0
+fi
+
 ACCENT_COLOR="${THEME[blue]}"
 BG_COLOR="${THEME[ghblack]}"
 BG_BAR="${THEME[ghblack]}"
