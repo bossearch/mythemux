@@ -43,13 +43,13 @@ tmux set -g status-left "#[fg=${THEME[bblack]},bg=${THEME[blue]},bold] \
 ### windows ###
 # focus
 tmux set -g window-status-current-format "$RESET#[fg=${THEME[green]},bg=${THEME[ghsky]}] \
-#{?#{==:#{pane_current_command},ssh},󰣀 ,$active_terminal_icon  }\
+#{?#{==:#{pane_current_command},ssh},󰣀  ,$active_terminal_icon  }\
 #[fg=${THEME[blue]},bold,nodim]#W $window_number.\
 #[nobold]#{?window_zoomed_flag,$zoom_number,$custom_pane} "
 
 # unfocus
 tmux set -g window-status-format "$RESET#[fg=${THEME[foreground]},bg=${THEME[ghblack]}] \
-#{?#{==:#{pane_current_command},ssh},󰣀 ,$terminal_icon  }#W $window_number.\
+#{?#{==:#{pane_current_command},ssh},󰣀  ,$terminal_icon  }#W $window_number.\
 #[nobold,dim]#{?window_zoomed_flag,$zoom_number,$custom_pane} "
 
 ### RIGHT ###
