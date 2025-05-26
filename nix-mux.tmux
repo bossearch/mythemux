@@ -23,10 +23,9 @@ tmux set -g popup-border-style "fg=${THEME[ghturquoise]}"
 HOSTNAME=$(hostname)
 terminal_icon=""
 active_terminal_icon=""
-window_space=" "
 window_number="#($SCRIPTS_PATH/custom-number.sh #I digital)"
 custom_pane="#($SCRIPTS_PATH/custom-number.sh #P digital)"
-zoom_number="#($SCRIPTS_PATH/custom-number.sh #P hsquare)"
+zoom_number="#($SCRIPTS_PATH/custom-number.sh #P fsquare)"
 
 ### session name ###
 tmux set -g status-left "#[fg=${THEME[bblack]},bg=${THEME[blue]},bold] #{?client_prefix,󰠠 ,#[dim]󰤂 }#[bold,nodim]#S#[nodim,fg=${THEME[black]}]@$HOSTNAME "
@@ -34,13 +33,11 @@ tmux set -g status-left "#[fg=${THEME[bblack]},bg=${THEME[blue]},bold] #{?client
 ### windows ###
 # focus
 tmux set -g window-status-current-format "$RESET#[fg=${THEME[green]},bg=${THEME[ghsky]}] \
-#{?#{==:#{pane_current_command},ssh},󰣀 ,$active_terminal_icon $window_space}\
-#[fg=${THEME[blue]},bold,nodim]#W\
-#[nobold]#{?window_zoomed_flag, $window_number.$zoom_number, $window_number.$custom_pane}\
-#{?window_last_flag, , }"
+#{?#{==:#{pane_current_command},ssh},󰣀 ,$active_terminal_icon  }\
+#[fg=${THEME[blue]},bold,nodim]#W $window_number.\
+#[nobold]#{?window_zoomed_flag,$zoom_number,$custom_pane} "
 
-#focused
+# unfocus
 tmux set -g window-status-format "$RESET#[fg=${THEME[foreground]},bg=${THEME[ghblack]}] \
-#{?#{==:#{pane_current_command},ssh},󰣀 ,$terminal_icon $window_space}#W\
-#[nobold,dim]#{?window_zoomed_flag, $zoom_number, $window_number.$custom_pane}\
-#{?window_last_flag, , }"
+#{?#{==:#{pane_current_command},ssh},󰣀 ,$terminal_icon  }#W $window_number.\
+#[nobold,dim]#{?window_zoomed_flag,$zoom_number,$custom_pane} "

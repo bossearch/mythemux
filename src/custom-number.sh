@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 format_digital="🯰🯱🯲🯳🯴🯵🯶🯷🯸🯹"
-format_hsquare="󰎣󰎦󰎩󰎬󰎮󰎰󰎵󰎸󰎻󰎾"
+format_fsquare="󰎡󰎤󰎧󰎪󰎭󰎱󰎳󰎶󰎹󰎼"
 
 ID=$1
 FORMAT=${2:-none}
