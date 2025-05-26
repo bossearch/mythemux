@@ -43,4 +43,4 @@ tmux set -g window-status-current-format "$RESET#[fg=${THEME[green]},bg=${THEME[
 tmux set -g window-status-format "$RESET#[fg=${THEME[foreground]},bg=${THEME[ghblack]}] \
 #{?#{==:#{pane_current_command},ssh},󰣀 ,$terminal_icon $window_space}#W\
 #[nobold,dim]#{?window_zoomed_flag, $zoom_number, $window_number.$custom_pane}\
-#[fg=${THEME[yellow]}]#{?window_last_flag, 󰁯 , }"
+#{?window_last_flag, , }"
