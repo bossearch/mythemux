@@ -8,8 +8,8 @@ if [[ -z "$DISPLAY" ]]; then
 fi
 
 ACCENT_COLOR="${THEME[blue]}"
-BG_COLOR="${THEME[ghblack]}"
-BG_BAR="${THEME[ghblack]}"
+BG_COLOR="${THEME[black]}"
+BG_BAR="${THEME[black]}"
 TIME_COLOR="${THEME[blue]}"
 
 if [[ $1 =~ ^[[:digit:]]+$ ]]; then

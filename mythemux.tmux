@@ -20,7 +20,7 @@ tmux set -g pane-border-style "fg=${THEME[bblack]}"
 tmux set -g popup-border-style "fg=${THEME[ghturquoise]}"
 tmux set -g status-left-length 80
 tmux set -g status-right-length 150
-tmux set -g status-style bg="${THEME[ghblack]}"
+tmux set -g status-style bg="${THEME[black]}"
 
 HOSTNAME=$(hostname)
 terminal_icon=""
@@ -37,8 +37,8 @@ wbgit="#($SCRIPTS_PATH/wbgit-status.sh)"
 
 ### LEFT ###
 ### session name ###
-tmux set -g status-left "#[fg=${THEME[bblack]},bg=${THEME[blue]},bold] \
-#{?client_prefix,󰠠 ,#[dim]󰤂 }#[bold,nodim]#S#[nodim,fg=${THEME[black]}]@$HOSTNAME "
+tmux set -g status-left "#[fg=${THEME[black]},bg=${THEME[blue]},bold] \
+#{?client_prefix,󰠠 ,#[dim]󰤂 }#[bold,nodim]#S#[nodim,fg=${THEME[bblack]}]@$HOSTNAME "
 
 ### windows ###
 # focus
@@ -48,7 +48,7 @@ tmux set -g window-status-current-format "$RESET#[fg=${THEME[green]},bg=${THEME[
 #{?window_zoomed_flag,#[bold]$zoom_number,#[nobold,dim]$custom_pane} "
 
 # unfocus
-tmux set -g window-status-format "$RESET#[fg=${THEME[foreground]},bg=${THEME[ghblack]}] \
+tmux set -g window-status-format "$RESET#[fg=${THEME[foreground]},bg=${THEME[black]}] \
 #{?#{==:#{pane_current_command},ssh},󰣀  ,$terminal_icon  }#W $window_number.\
 #{?window_zoomed_flag,#[bold]$zoom_number,#[nobold,dim]$custom_pane} "
 

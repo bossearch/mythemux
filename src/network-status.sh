@@ -58,7 +58,7 @@ main() {
 
   # Internet connectivity check
   if ! check_internet; then
-    echo -e "#[fg=${THEME[ghred]},bg=${THEME[ghblack]}]░ Disconnected   "
+    echo -e "#[fg=${THEME[ghred]},bg=${THEME[black]}]░ Disconnected   "
     return 0
   fi
 
@@ -72,7 +72,7 @@ main() {
 
   RX_SPEED="#[fg=${THEME[foreground]}]$(format_speed $download_speed)"
   TX_SPEED="#[fg=${THEME[foreground]}]$(format_speed $upload_speed)"
-  displayed="#[bg=${THEME[ghblack]}]░ ${NET_ICONS[traffic_rx]} $RX_SPEED ${NET_ICONS[traffic_tx]} $TX_SPEED "
+  displayed="#[bg=${THEME[black]}]░ ${NET_ICONS[traffic_rx]} $RX_SPEED ${NET_ICONS[traffic_tx]} $TX_SPEED "
   echo -e "$displayed"
 }
 

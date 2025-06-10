@@ -46,22 +46,22 @@ else
 fi
 
 if [[ $PR_COUNT -gt 0 ]]; then
-  PR_STATUS="#[fg=${THEME[ghgreen]},bg=${THEME[ghblack]},bold] ${RESET}${PR_COUNT} "
+  PR_STATUS="#[fg=${THEME[ghgreen]},bg=${THEME[black]},bold] ${RESET}${PR_COUNT} "
 fi
 
 if [[ $REVIEW_COUNT -gt 0 ]]; then
-  REVIEW_STATUS="#[fg=${THEME[ghyellow]},bg=${THEME[ghblack]},bold] ${RESET}${REVIEW_COUNT} "
+  REVIEW_STATUS="#[fg=${THEME[ghyellow]},bg=${THEME[black]},bold] ${RESET}${REVIEW_COUNT} "
 fi
 
 if [[ $ISSUE_COUNT -gt 0 ]]; then
-  ISSUE_STATUS="#[fg=${THEME[ghgreen]},bg=${THEME[ghblack]},bold] ${RESET}${ISSUE_COUNT} "
+  ISSUE_STATUS="#[fg=${THEME[ghgreen]},bg=${THEME[black]},bold] ${RESET}${ISSUE_COUNT} "
 fi
 
 if [[ $BUG_COUNT -gt 0 ]]; then
-  BUG_STATUS="#[fg=${THEME[ghred]},bg=${THEME[ghblack]},bold] ${RESET}${BUG_COUNT} "
+  BUG_STATUS="#[fg=${THEME[ghred]},bg=${THEME[black]},bold] ${RESET}${BUG_COUNT} "
 fi
 
-WB_STATUS="#[fg=${THEME[black]},bg=${THEME[ghblack]},bold] $RESET$PROVIDER_ICON $RESET$PR_STATUS$REVIEW_STATUS$ISSUE_STATUS$BUG_STATUS"
+WB_STATUS="#[fg=${THEME[foreground]},bg=${THEME[black]},bold] $RESET$PROVIDER_ICON $RESET$PR_STATUS$REVIEW_STATUS$ISSUE_STATUS$BUG_STATUS"
 
 echo "$WB_STATUS"
 
