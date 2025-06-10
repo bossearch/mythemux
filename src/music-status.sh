@@ -1,7 +1,6 @@
 #!/usr/bin/env bash
 
-CURRENT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-source $CURRENT_DIR/themes.sh
+source "$HOME/.config/tmux/theme.sh"
 
 # Exit if not in a graphical session (TTY fallback check)
 if [[ -z "$DISPLAY" ]]; then
@@ -20,27 +19,27 @@ else
 fi
 
 # playerctl
-  PLAYER_STATUS=$(playerctl -a metadata --format "{{status}};{{mpris:length}};{{position}};{{title}}" | grep -m1 "Playing")
-  STATUS="playing"
+PLAYER_STATUS=$(playerctl -a metadata --format "{{status}};{{mpris:length}};{{position}};{{title}}" | grep -m1 "Playing")
+STATUS="playing"
 
-  # There is no playing media, check for paused media
-  if [ -z "$PLAYER_STATUS" ]; then
-    PLAYER_STATUS=$(playerctl -a metadata --format "{{status}};{{mpris:length}};{{position}};{{title}}" | grep -m1 "Paused")
-    STATUS="paused"
-  fi
+# There is no playing media, check for paused media
+if [ -z "$PLAYER_STATUS" ]; then
+  PLAYER_STATUS=$(playerctl -a metadata --format "{{status}};{{mpris:length}};{{position}};{{title}}" | grep -m1 "Paused")
+  STATUS="paused"
+fi
 
-  TITLE=$(echo "$PLAYER_STATUS" | cut -d';' --fields=4)
-  DURATION=$(echo "$PLAYER_STATUS" | cut -d';' --fields=2)
-  POSITION=$(echo "$PLAYER_STATUS" | cut -d';' --fields=3)
+TITLE=$(echo "$PLAYER_STATUS" | cut -d';' --fields=4)
+DURATION=$(echo "$PLAYER_STATUS" | cut -d';' --fields=2)
+POSITION=$(echo "$PLAYER_STATUS" | cut -d';' --fields=3)
 
-  # Convert position and duration to seconds from microseconds
-  DURATION=$((DURATION / 1000000))
-  POSITION=$((POSITION / 1000000))
+# Convert position and duration to seconds from microseconds
+DURATION=$((DURATION / 1000000))
+POSITION=$((POSITION / 1000000))
 
-  if [ "$DURATION" -eq 0 ]; then
-    DURATION=-1
-    POSITION=0
-  fi
+if [ "$DURATION" -eq 0 ]; then
+  DURATION=-1
+  POSITION=0
+fi
 
 # Calculate the progress bar for sane durations
 if [ -n "$DURATION" ] && [ -n "$POSITION" ] && [ "$DURATION" -gt 0 ] && [ "$DURATION" -lt 3600 ]; then

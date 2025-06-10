@@ -1,7 +1,6 @@
 #!/usr/bin/env bash
 
-CURRENT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-source "$CURRENT_DIR/themes.sh"
+source "$HOME/.config/tmux/theme.sh"
 
 cd "$1" || exit 1
 BRANCH=$(git rev-parse --abbrev-ref HEAD 2>/dev/null)

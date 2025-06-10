@@ -6,7 +6,7 @@
 CURRENT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 SCRIPTS_PATH="$CURRENT_DIR/src"
 
-source $SCRIPTS_PATH/themes.sh
+source "$HOME/.config/tmux/theme.sh"
 
 RESET="#[fg=${THEME[foreground]},bg=${THEME[background]},nobold,noitalics,nounderscore,nodim]"
 

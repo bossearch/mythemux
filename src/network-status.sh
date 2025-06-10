@@ -1,7 +1,6 @@
 #!/usr/bin/env bash
 
-CURRENT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-source "$CURRENT_DIR"/themes.sh
+source "$HOME/.config/tmux/theme.sh"
 
 declare -A NET_ICONS=(
   ["traffic_tx"]="#[fg=${THEME[bblue]}]\U000f06f6"
