@@ -13,67 +13,56 @@ get_default_gateway() {
 
 check_internet() {
   local gw
-  gw=$(get_default_gateway)
-  if [ -z "$gw" ]; then
-    return 1
-  fi
-  if ping -q -c 1 -W 2 "$gw" >/dev/null 2>&1; then
-    return 0
-  else
-    return 1
-  fi
+  gw=$(get_default_gateway) || return 1
+  ping -q -c 1 -W 2 "$gw" >/dev/null 2>&1
 }
 
-get_bandwidth() {
-  netstat -ie | awk '
-    match($0, /RX([[:space:]]packets[[:space:]][[:digit:]]+)?[[:space:]]+bytes[:[:space:]]([[:digit:]]+)/, rx) { rx_sum += rx[2]; }
-    match($0, /TX([[:space:]]packets[[:space:]][[:digit:]]+)?[[:space:]]+bytes[:[:space:]]([[:digit:]]+)/, tx) { tx_sum += tx[2]; }
-    END { print rx_sum, tx_sum }
+get_interface() {
+  ip route | awk '
+    /default/ { print $5; exit }
+    /src/     { print $3; exit }
   '
 }
 
+get_bandwidth() {
+  local iface rx tx
+  iface=$(get_interface)
+  read -r rx <"/sys/class/net/$iface/statistics/rx_bytes"
+  read -r tx <"/sys/class/net/$iface/statistics/tx_bytes"
+  printf "%s %s\n" "$rx" "$tx"
+}
+
 format_speed() {
-  local value
-  local bytes_per_sec=$1
-  local unit="KB/s"
-  value=$(awk "BEGIN { printf \"%.1f\", $bytes_per_sec / 1024 }")
-
-  if (($(echo "$value >= 1024" | bc -l))); then
-    value=$(awk "BEGIN { printf \"%.1f\", $value / 1024 }")
-    unit="MB/s"
-  fi
-
-  if (($(echo "$value >= 1024" | bc -l))); then
-    value=$(awk "BEGIN { printf \"%.1f\", $value / 1024 }")
-    unit="GB/s"
-  fi
-
-  echo "${value}${unit}"
+  awk -v b="$1" '
+    BEGIN {
+      if (b < 1048576) { printf "%.1fKB/s", b/1024; exit }
+      if (b < 1073741824) { printf "%.1fMB/s", b/1048576; exit }
+      printf "%.1fGB/s", b/1073741824
+    }
+  '
 }
 
 main() {
   local sleep_time
   sleep_time=$(tmux show-option -gqv "status-interval")
-  if [ -z "$sleep_time" ]; then sleep_time=5; fi
+  [ -z "$sleep_time" ] && sleep_time=5
 
-  # Internet connectivity check
   if ! check_internet; then
     echo -e "#[fg=${THEME[ghred]},bg=${THEME[black]}]░ Disconnected   "
     return 0
   fi
 
-  local first_measure
-  local second_measure
-  read -ra first_measure <<<"$(get_bandwidth)"
+  read -r rx1 tx1 < <(get_bandwidth)
   sleep "$sleep_time"
-  read -ra second_measure <<<"$(get_bandwidth)"
-  local download_speed=$(((second_measure[0] - first_measure[0]) / sleep_time))
-  local upload_speed=$(((second_measure[1] - first_measure[1]) / sleep_time))
+  read -r rx2 tx2 < <(get_bandwidth)
 
-  RX_SPEED="#[fg=${THEME[foreground]}]$(format_speed $download_speed)"
-  TX_SPEED="#[fg=${THEME[foreground]}]$(format_speed $upload_speed)"
-  displayed="#[bg=${THEME[black]}]░ ${NET_ICONS[traffic_rx]} $RX_SPEED ${NET_ICONS[traffic_tx]} $TX_SPEED "
-  echo -e "$displayed"
+  local download_speed=$(((rx2 - rx1) / sleep_time))
+  local upload_speed=$(((tx2 - tx1) / sleep_time))
+
+  RX_SPEED="#[fg=${THEME[foreground]}]$(format_speed "$download_speed")"
+  TX_SPEED="#[fg=${THEME[foreground]}]$(format_speed "$upload_speed")"
+
+  echo -e "#[bg=${THEME[black]}]░ ${NET_ICONS[traffic_rx]} $RX_SPEED ${NET_ICONS[traffic_tx]} $TX_SPEED "
 }
 
 main
