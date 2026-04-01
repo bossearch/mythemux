@@ -1,10 +1,11 @@
 #!/usr/bin/env bash
 
+# shellcheck source=/dev/null
 source "$HOME/.config/tmux/theme.sh"
 
 declare -A NET_ICONS=(
-  ["traffic_tx"]="#[fg=${THEME[bblue]}]\U000f06f6"
-  ["traffic_rx"]="#[fg=${THEME[bgreen]}]\U000f06f4"
+  ["traffic_tx"]="#[fg=${THEME[base0D]}]\U000f06f6"
+  ["traffic_rx"]="#[fg=${THEME[base0F]}]\U000f06f4"
 )
 
 get_default_gateway() {
@@ -48,7 +49,7 @@ main() {
   [ -z "$sleep_time" ] && sleep_time=5
 
   if ! check_internet; then
-    echo -e "#[fg=${THEME[ghred]},bg=${THEME[black]}]░ Disconnected   "
+    echo -e "#[fg=${THEME[base08]},bg=${THEME[base00]}]░ Disconnected   "
     return 0
   fi
 
@@ -59,10 +60,10 @@ main() {
   local download_speed=$(((rx2 - rx1) / sleep_time))
   local upload_speed=$(((tx2 - tx1) / sleep_time))
 
-  RX_SPEED="#[fg=${THEME[foreground]}]$(format_speed "$download_speed")"
-  TX_SPEED="#[fg=${THEME[foreground]}]$(format_speed "$upload_speed")"
+  RX_SPEED="#[fg=${THEME[base05]}]$(format_speed "$download_speed")"
+  TX_SPEED="#[fg=${THEME[base05]}]$(format_speed "$upload_speed")"
 
-  echo -e "#[bg=${THEME[black]}]░ ${NET_ICONS[traffic_rx]} $RX_SPEED ${NET_ICONS[traffic_tx]} $TX_SPEED "
+  echo -e "#[bg=${THEME[base00]}]░ ${NET_ICONS[traffic_rx]} $RX_SPEED ${NET_ICONS[traffic_tx]} $TX_SPEED "
 }
 
 main
