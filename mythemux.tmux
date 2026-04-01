@@ -27,9 +27,6 @@ terminal_icon=""
 active_terminal_icon=""
 
 # modules
-window_number="#($SCRIPTS_PATH/custom-number.sh #I none)"
-custom_pane="#($SCRIPTS_PATH/custom-number.sh #P none)"
-zoom_number="#($SCRIPTS_PATH/custom-number.sh #P none)"
 datetime="$("$SCRIPTS_PATH"/datetime-status.sh)"
 music="#($SCRIPTS_PATH/music-status.sh)"
 network="#($SCRIPTS_PATH/network-status.sh)"
@@ -44,13 +41,13 @@ tmux set -g status-left "#[fg=${THEME[black]},bg=${THEME[blue]},bold] \
 # focus
 tmux set -g window-status-current-format "$RESET#[fg=${THEME[green]},bg=${THEME[ghsky]}] \
 #{?#{==:#{pane_current_command},ssh},󰣀  ,$active_terminal_icon  }\
-#[fg=${THEME[blue]},bold,nodim]#W $window_number.\
-#{?window_zoomed_flag,#[bold]$zoom_number,#[nobold,dim]$custom_pane} "
+#[fg=${THEME[base0D]},bold,nodim]#W #I.\
+#{?window_zoomed_flag,#[bold]#P,#[nobold]#[dim]#P} "
 
 # unfocus
 tmux set -g window-status-format "$RESET#[fg=${THEME[foreground]},bg=${THEME[black]}] \
-#{?#{==:#{pane_current_command},ssh},󰣀  ,$terminal_icon  }#W $window_number.\
-#{?window_zoomed_flag,#[bold]$zoom_number,#[nobold,dim]$custom_pane} "
+#{?#{==:#{pane_current_command},ssh},󰣀  ,$terminal_icon  }#W #I.\
+#{?window_zoomed_flag,#[bold]#P,#[nobold]#[dim]#P} "
 
 ### RIGHT ###
 tmux set -g status-right "$network$wbgit$music$datetime"
