@@ -63,7 +63,7 @@ main() {
   RX_SPEED="#[fg=${THEME[base05]}]$(format_speed "$download_speed")"
   TX_SPEED="#[fg=${THEME[base05]}]$(format_speed "$upload_speed")"
 
-  echo -e "#[bg=${THEME[base00]}]░ ${NET_ICONS[traffic_rx]} $RX_SPEED ${NET_ICONS[traffic_tx]} $TX_SPEED "
+  echo -e "#[fg=${THEME[base05]},bg=${THEME[base00]}]░ ${NET_ICONS[traffic_rx]} $RX_SPEED ${NET_ICONS[traffic_tx]} $TX_SPEED "
 }
 
 main
