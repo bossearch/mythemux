@@ -30,7 +30,7 @@ active_terminal_icon=""
 datetime="$("$SCRIPTS_PATH"/datetime-status.sh)"
 music="#($SCRIPTS_PATH/music-status.sh)"
 network="#($SCRIPTS_PATH/network-status.sh)"
-wbgit="#($SCRIPTS_PATH/wbgit-status.sh)"
+git="#($SCRIPTS_PATH/wbgit-status.sh)"
 
 ### LEFT ###
 ### session name ###
@@ -50,5 +50,5 @@ tmux set -g window-status-format "$RESET#[fg=${THEME[foreground]},bg=${THEME[bla
 #{?window_zoomed_flag,#[bold]#P,#[nobold]#[dim]#P} "
 
 ### RIGHT ###
-tmux set -g status-right "$network$wbgit$music$datetime"
+tmux set -g status-right "$git$network$music$datetime"
 tmux set -g window-status-separator ""
