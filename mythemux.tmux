@@ -30,7 +30,7 @@ active_terminal_icon=""
 datetime="$("$SCRIPTS_PATH"/datetime-status.sh)"
 music="#($SCRIPTS_PATH/music-status.sh)"
 network="#($SCRIPTS_PATH/network-status.sh)"
-git="#($SCRIPTS_PATH/wbgit-status.sh)"
+git="#($SCRIPTS_PATH/git-status.sh #{pane_current_path} &)"
 
 ### LEFT ###
 ### session name ###
