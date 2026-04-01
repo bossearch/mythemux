@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
 
+# shellcheck source=/dev/null
 source "$HOME/.config/tmux/theme.sh"
 
 # Exit if not in a graphical session (TTY fallback check)
@@ -7,10 +8,10 @@ if [[ -z "$DISPLAY" ]]; then
   exit 0
 fi
 
-ACCENT_COLOR="${THEME[blue]}"
-BG_COLOR="${THEME[black]}"
-BG_BAR="${THEME[black]}"
-TIME_COLOR="${THEME[blue]}"
+ACCENT_COLOR="${THEME[base0D]}"
+BG_COLOR="${THEME[base00]}"
+BG_BAR="${THEME[base00]}"
+TIME_COLOR="${THEME[base0D]}"
 
 if [[ $1 =~ ^[[:digit:]]+$ ]]; then
   MAX_TITLE_WIDTH=$1
@@ -71,7 +72,7 @@ if [ "${#OUTPUT}" -ge $MAX_TITLE_WIDTH ]; then
 fi
 
 if [ -z "$OUTPUT" ]; then
-  echo "$OUTPUT #[fg=green,bg=default]"
+  echo "$OUTPUT #[fg=${THEME[base0B]},bg=default]"
 else
   OUT="$OUTPUT $TIME "
   ONLY_OUT="$OUTPUT "
