@@ -23,8 +23,8 @@ tmux set -g status-right-length 150
 tmux set -g status-style bg="${THEME[black]}"
 
 HOSTNAME=$(hostname)
-terminal_icon=""
-active_terminal_icon=""
+terminal_icon=""
+active_terminal_icon=""
 
 # modules
 datetime="$("$SCRIPTS_PATH"/datetime-status.sh)"
