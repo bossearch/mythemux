@@ -24,11 +24,11 @@ fi
 UNTRACKED_COUNT="$(git ls-files --other --exclude-standard | wc -l | bc)"
 
 if [[ $CHANGE_COUNT -gt 0 ]]; then
-  CHANGE_STATUS="${RESET}#[fg=${THEME[base0D]},bg=${THEME[base00]}]~${CHANGE_COUNT} "
+  CHANGE_STATUS="${RESET}#[fg=${THEME[base0C]},bg=${THEME[base00]}]~${CHANGE_COUNT} "
 fi
 
 if [[ $ADD_COUNT -gt 0 ]]; then
-  ADD_STATUS="${RESET}#[fg=${THEME[base0F]},bg=${THEME[base00]}]+${ADD_COUNT} "
+  ADD_STATUS="${RESET}#[fg=${THEME[base0B]},bg=${THEME[base00]}]+${ADD_COUNT} "
 fi
 
 if [[ $DELETE_COUNT -gt 0 ]]; then
@@ -114,15 +114,15 @@ else
 fi
 
 if [[ $COMMIT_COUNT -gt 0 ]]; then
-  COMMIT_STATUS="${RESET}#[fg=${THEME[base0C]},bg=${THEME[base00]}]󰜝 ${COMMIT_COUNT} "
+  COMMIT_STATUS="${RESET}#[fg=${THEME[base0F]},bg=${THEME[base00]}]󰜝 ${COMMIT_COUNT} "
 fi
 
 if [[ $FORK_COUNT -gt 0 ]]; then
-  FORK_STATUS="${RESET}#[fg=${THEME[base0C]},bg=${THEME[base00]}] ${FORK_COUNT} "
+  FORK_STATUS="${RESET}#[fg=${THEME[base0D]},bg=${THEME[base00]}] ${FORK_COUNT} "
 fi
 
 if [[ $STAR_COUNT -gt 0 ]]; then
-  STAR_STATUS="${RESET}#[fg=${THEME[base0A]},bg=${THEME[base00]}] ${STAR_COUNT} "
+  STAR_STATUS="${RESET}#[fg=${THEME[base09]},bg=${THEME[base00]}] ${STAR_COUNT} "
 fi
 
 if [[ $ISSUE_COUNT -gt 0 ]]; then
