@@ -114,27 +114,27 @@ else
 fi
 
 if [[ $COMMIT_COUNT -gt 0 ]]; then
-  COMMIT_STATUS="${RESET}#[fg=${THEME[base0F]},bg=${THEME[base00]}]󰜝 ${COMMIT_COUNT} "
+  COMMIT_STATUS="${RESET}#[fg=${THEME[base0F]},bg=${THEME[base00]}] ${COMMIT_COUNT} "
 fi
 
 if [[ $FORK_COUNT -gt 0 ]]; then
-  FORK_STATUS="${RESET}#[fg=${THEME[base0D]},bg=${THEME[base00]}] ${FORK_COUNT} "
+  FORK_STATUS="${RESET}#[fg=${THEME[base0D]},bg=${THEME[base00]}] ${FORK_COUNT} "
 fi
 
 if [[ $STAR_COUNT -gt 0 ]]; then
-  STAR_STATUS="${RESET}#[fg=${THEME[base09]},bg=${THEME[base00]}] ${STAR_COUNT} "
+  STAR_STATUS="${RESET}#[fg=${THEME[base09]},bg=${THEME[base00]}] ${STAR_COUNT} "
 fi
 
 if [[ $ISSUE_COUNT -gt 0 ]]; then
-  ISSUE_STATUS="${RESET}#[fg=${THEME[base0B]},bg=${THEME[base00]}] ${ISSUE_COUNT} "
+  ISSUE_STATUS="${RESET}#[fg=${THEME[base0B]},bg=${THEME[base00]}]󰗮 ${ISSUE_COUNT} "
 fi
 
 if [[ $PR_COUNT -gt 0 ]]; then
-  PR_STATUS="${RESET}#[fg=${THEME[base0E]},bg=${THEME[base00]}] ${PR_COUNT} "
+  PR_STATUS="${RESET}#[fg=${THEME[base0E]},bg=${THEME[base00]}] ${PR_COUNT} "
 fi
 
 if [[ $REVIEW_COUNT -gt 0 ]]; then
-  REVIEW_STATUS="${RESET}#[fg=${THEME[base0E]},bg=${THEME[base00]}] $${REVIEW_COUNT} "
+  REVIEW_STATUS="${RESET}#[fg=${THEME[base0E]},bg=${THEME[base00]}] ${REVIEW_COUNT} "
 fi
 
 WB_STATUS="#[fg=${THEME[base05]},bg=${THEME[base00]}]░ $PROVIDER_ICON "
