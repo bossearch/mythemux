@@ -13,7 +13,7 @@ RESET="#[fg=${THEME[base05]},bg=${THEME[base01]},nobold,noitalics,nounderscore,n
 
 # options
 tmux set -g message-command-style "fg=${THEME[base07]},bg=${THEME[base00]}"
-tmux set -g message-style "bg=${THEME[base0D]},fg=${THEME[base01]}"
+tmux set -g message-style "bg=${THEME[base00]},fg=${THEME[base05]},fill=${THEME[base00]}"
 tmux set -g mode-style "fg=${THEME[base0F]},bg=${THEME[base03]}"
 tmux set -g pane-active-border-style "fg=${THEME[base0F]}"
 tmux set -g pane-border-status off
